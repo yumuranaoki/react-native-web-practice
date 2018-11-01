@@ -7,14 +7,17 @@ class Post extends Component {
       container: {
         flex:1,
         alignItems: 'stretch',
-      }
+      },
+      english: {
+        fontFamily: 'Roboto Mono',
+      },
     });
 
     return(
       <View
         style={styles.container}
       >
-        <Text>Post</Text>
+        <Text style={styles.english}>No post yet</Text>
       </View>
     );
   }

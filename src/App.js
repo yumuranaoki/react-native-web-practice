@@ -11,7 +11,6 @@ class App extends Component {
         flex: 1,
         backgroundColor: 'white',
         alignItems: 'center',
-        justifyContent: 'center',
       },
       tabAlign: {
         flexDirection: 'row',
@@ -21,15 +20,37 @@ class App extends Component {
         margin: 50,
         width: 200,
         height: 50,
-        backgroundColor: '#191970',
+        borderColor: '#191970',
+        borderWidth: 2,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 10,
       },
       linkText: {
-        color: 'white',
+        color: 'black',
         fontSize: 28,
         fontWeight: '500',
+        fontFamily: 'Roboto Mono',
+      },
+      japanese: {
+        fontFamily: 'Noto Sans JP',
+      },
+      english: {
+        fontFamily: 'Roboto Mono',
+      },
+      headerText: {
+        fontSize: 36,
+        fontWeight: '700'
+      },
+      linkTag: {
+        textDecorationLine: 'none',
+      },
+      contents: {
+        width: 500,
+        borderColor: 'gray',
+        borderWidth: 1,
+        borderRadius: 10,
+        padding: 20,
       }
     });
     return (
@@ -37,8 +58,10 @@ class App extends Component {
         <View
           style={styles.container}
         >
-          <Text>
-            react native web
+          <Text
+            style={[styles.english, styles.headerText]}
+          >
+            Naoki Yumura
           </Text>
           <View
             style={styles.tabAlign}
@@ -46,9 +69,12 @@ class App extends Component {
             <View
               style={styles.link}
             >
-              <Link to='profile'>
+              <Link
+                to='profile'
+                style={{ textDecorationLine: 'none' }}
+              >
                 <Text
-                  style={styles.linkText}
+                  style={[styles.linkText, styles.english]}
                 >
                   Profile
                 </Text>
@@ -57,17 +83,24 @@ class App extends Component {
             <View
               style={styles.link}
             >
-              <Link to='post'>
+              <Link
+                to='post'
+                style={{ textDecorationLine: 'none' }}
+              >
                 <Text
-                  style={styles.linkText}
+                  style={[styles.linkText, styles.english]}
                 >
                   Post
                 </Text>
               </Link>
             </View>
+          </View>
+          <View
+            style={styles.contents}
+          >
+            <Route path='/profile' component={Profile} />
+            <Route path='/post' component={Post} />
           </View>          
-          <Route path='/profile' component={Profile} />
-          <Route path='/post' component={Post} />
         </View>
       </Router>
     );
