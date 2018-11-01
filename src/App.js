@@ -5,6 +5,7 @@ import Profile from './profile';
 import Post from './post';
 
 class App extends Component {
+  // context apiでstateとactionを管理する
   render() {
     const styles = StyleSheet.create({
       container: {
@@ -40,7 +41,8 @@ class App extends Component {
       },
       headerText: {
         fontSize: 36,
-        fontWeight: '700'
+        fontWeight: '700',
+        color: 'black',
       },
       linkTag: {
         textDecorationLine: 'none',
@@ -58,11 +60,16 @@ class App extends Component {
         <View
           style={styles.container}
         >
-          <Text
-            style={[styles.english, styles.headerText]}
+          <Link
+            to='/'
+            style={{ textDecoration: 'none', }}
           >
-            Naoki Yumura
-          </Text>
+            <Text
+              style={[styles.english, styles.headerText]}
+            >
+              Naoki Yumura
+            </Text>
+          </Link>
           <View
             style={styles.tabAlign}
           >
@@ -94,13 +101,9 @@ class App extends Component {
                 </Text>
               </Link>
             </View>
-          </View>
-          <View
-            style={styles.contents}
-          >
-            <Route path='/profile' component={Profile} />
-            <Route path='/post' component={Post} />
-          </View>          
+        </View>
+          <Route path='/profile' component={Profile} />
+          <Route path='/post' component={Post} />
         </View>
       </Router>
     );

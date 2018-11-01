@@ -5,8 +5,11 @@ class Profile extends Component {
   render() {
     const styles = StyleSheet.create({
       container: {
-        flex:1,
-        alignItems: 'stretch',
+        width: 500,
+        borderColor: 'gray',
+        borderWidth: 1,
+        borderRadius: 10,
+        padding: 20,
       },
       english: {
         fontFamily: 'Roboto Mono',
