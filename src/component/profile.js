@@ -1,15 +1,20 @@
-import React, { Component } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import React, { Component, } from 'react';
+import { View, StyleSheet, Text, } from 'react-native';
+import withWidth from '@material-ui/core/withWidth';
 
 class Profile extends Component {
   render() {
+    console.log(this.context)
+    const { width } = this.props;
     const styles = StyleSheet.create({
       container: {
-        width: 500,
+        width: width === 'xs' ? 300 : 500,
         borderColor: 'gray',
         borderWidth: 1,
         borderRadius: 10,
         padding: 20,
+        marginTop: width === 'xs' ? 20 : null,
+        marginBottom: 10,
       },
       english: {
         fontFamily: 'Roboto Mono',
@@ -24,6 +29,7 @@ class Profile extends Component {
       description: {
         marginBottom: 10,
         marginLeft: 5,
+        fontSize: width === 'xs' ? 12 : null,
       },
     });
 
@@ -31,6 +37,7 @@ class Profile extends Component {
       <View
         style={styles.container}
       >
+        <Text style={[styles.english, styles.header2]}>{this.context.state}</Text>
         <Text style={[styles.english, styles.header2]}>Name</Text>
         <Text style={[styles.english, styles.description]}>Naoki Yumura</Text>
         <Text style={[styles.english, styles.header2]}>Birthday</Text>
@@ -44,4 +51,4 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+export default withWidth()(Profile);

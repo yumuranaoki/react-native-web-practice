@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component, createContext } from 'react';
 import { StyleSheet, Text, View, ScrollView, ActivityIndicator } from 'react-native';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import withWidth from '@material-ui/core/withWidth';
 import Profile from './profile';
 import Post from './post';
 
+export const context = createContext();
+
 class App extends Component {
-  // context apiでstateとactionを管理する
   render() {
+    const { width, changeScreen, screen } = this.props;
     const styles = StyleSheet.create({
       container: {
         flex: 1,
@@ -14,18 +17,31 @@ class App extends Component {
         alignItems: 'center',
       },
       tabAlign: {
-        flexDirection: 'row',
+        flexDirection: width === 'xs' ? 'column' : 'row',
         justifyContent: 'space-between',
       },
       link: {
-        margin: 50,
-        width: 200,
-        height: 50,
+        margin: width === 'xs' ? 10 : 50,
+        width: width === 'xs' ? 300 : 200,
+        height: width === 'xs' ? 40 : 50,
         borderColor: '#191970',
         borderWidth: 2,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 10,
+        backgroundColor: 'white'
+      },
+      profileLink: {
+        backgroundColor: screen === 'profile' ? '#191970' : null,
+      },
+      profileLinkText: {
+        color: screen === 'profile' ? 'white' : 'black',
+      },
+      postLink: {
+        backgroundColor: screen === 'post' ? '#191970' : null,
+      },
+      postLinkText: {
+        color: screen === 'post' ? 'white' : 'black',
       },
       linkText: {
         color: 'black',
@@ -40,21 +56,15 @@ class App extends Component {
         fontFamily: 'Roboto Mono',
       },
       headerText: {
-        fontSize: 36,
+        fontSize: width === 'xs' ? 28 : 36,
         fontWeight: '700',
         color: 'black',
       },
       linkTag: {
         textDecorationLine: 'none',
       },
-      contents: {
-        width: 500,
-        borderColor: 'gray',
-        borderWidth: 1,
-        borderRadius: 10,
-        padding: 20,
-      }
     });
+
     return (
       <Router>
         <View
@@ -63,6 +73,7 @@ class App extends Component {
           <Link
             to='/'
             style={{ textDecoration: 'none', }}
+            onClick={() => changeScreen('main')}
           >
             <Text
               style={[styles.english, styles.headerText]}
@@ -74,28 +85,30 @@ class App extends Component {
             style={styles.tabAlign}
           >
             <View
-              style={styles.link}
+              style={[styles.link, styles.profileLink]}
             >
               <Link
                 to='profile'
                 style={{ textDecorationLine: 'none' }}
+                onClick={() => changeScreen('profile')}
               >
                 <Text
-                  style={[styles.linkText, styles.english]}
+                  style={[styles.linkText, styles.english, styles.profileLinkText]}
                 >
                   Profile
                 </Text>
               </Link>
             </View>
             <View
-              style={styles.link}
+              style={[styles.link, styles.postLink]}
             >
               <Link
                 to='post'
                 style={{ textDecorationLine: 'none' }}
+                onClick={() => changeScreen('post')}
               >
                 <Text
-                  style={[styles.linkText, styles.english]}
+                  style={[styles.linkText, styles.english, styles.postLinkText]}
                 >
                   Post
                 </Text>
@@ -110,4 +123,6 @@ class App extends Component {
   }
 }
 
-export default App;
+
+
+export default withWidth()(App);

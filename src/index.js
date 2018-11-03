@@ -1,9 +1,18 @@
+import React from 'react';
 import { AppRegistry } from 'react-native';
+import { Provider } from 'react-redux';
 import './index.css';
-import App from './App';
+import AppConnected from './container/app';
+import store from './store/index';
 import * as serviceWorker from './serviceWorker';
 
-AppRegistry.registerComponent('App', () => App);
+const AppWrapper = () => (
+  <Provider store={store}>
+    <AppConnected />
+  </Provider>
+)
+
+AppRegistry.registerComponent('App', () => AppWrapper);
 AppRegistry.runApplication('App', {
   initialProps: {},
   rootTag: document.getElementById('root')
