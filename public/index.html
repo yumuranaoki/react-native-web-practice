@@ -23,12 +23,14 @@
     <title>Naoki Yumura</title>
     <script>
       window.onload = function() {
-      Particles.init({
-        selector: '.background',
-        color: '#191970',
-        connectParticles: true,
-      });
-    };
+        Particles.init({
+          selector: '.background',
+          color: ['#191970', '#FF00FF', '#4B0082'],
+          maxParticles: 25,
+          connectParticles: true,
+          speed: 0.8,
+        });
+      };
     </script>
   </head>
   <body style="height:100%">

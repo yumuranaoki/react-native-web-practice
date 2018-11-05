@@ -4,7 +4,7 @@ import withWidth from '@material-ui/core/withWidth';
 
 class Profile extends Component {
   render() {
-    console.log(this.context)
+    console.log(this.props);
     const { width } = this.props;
     const styles = StyleSheet.create({
       container: {

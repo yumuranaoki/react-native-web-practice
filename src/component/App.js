@@ -10,6 +10,8 @@ export const context = createContext();
 class App extends Component {
   render() {
     const { width, changeScreen, screen } = this.props;
+    const pathname = this.props;
+    console.log(pathname)
     const styles = StyleSheet.create({
       container: {
         flex: 1,
